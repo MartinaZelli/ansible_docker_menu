@@ -1,0 +1,21 @@
+---
+- name: Servizi Python
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: "Primo servizio: {{ nome_1 }}"
+      ansible.builtin.include_role:
+        name: servizio_python
+      vars:
+        service_name: "{{ nome_1 }}"
+      ignore_errors: true
+
+    - name: "Secondo servizio: {{ nome_2 }}"
+      ansible.builtin.include_role:
+        name: servizio_python
+      vars:
+        service_name: "{{ nome_2 }}"
+      ignore_errors: true
+
+

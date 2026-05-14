@@ -1,0 +1,11 @@
+[Unit]
+Description=Servizio {{ name_service }}
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 {{ destinazione }}/{{ name_service }}/{{ name_service }}.py
+Restart=always
+User={{ ansible_facts['user_id'] }}
+
+[Install]
+WantedBy=multi-user.target
