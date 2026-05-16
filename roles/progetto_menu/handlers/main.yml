@@ -5,3 +5,8 @@
     state: restarted
     build: always
   become: true
+
+- name: Ricarica systemd
+  ansible.builtin.systemd:
+    daemon_reload: true
+  become: true
