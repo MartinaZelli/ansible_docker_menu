@@ -7,4 +7,4 @@ project_packages:
   - docker-compose
   - python-pip
   - python-docker
-  - python-mysql.connector
+  - python-setuptools

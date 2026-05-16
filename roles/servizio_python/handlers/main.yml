@@ -1,23 +1,7 @@
 ---
-- name: Ricarica daemon systemd
-  ansible.builtin.systemd:
-    daemon_reload: true
-
-- name: Riavvia servizio python
-  ansible.builtin.systemd:
-    name: "{{ service_name }}"
-    state: restarted
-
-- name: Restart Docker
-  ansible.builtin.systemd_service:
-    name: docker.service
-    state: restarted
-
-- name: Docker Compose Up - Monitoring
+- name: Riavvia container
   community.docker.docker_compose_v2:
-    project_src: /docker/monitoring
-    state: present
-    recreate: auto
-    remove_orphans: true
-  when: "'monitoring' in ansible_tags"
-  listen: "Docker Compose Up"
+    project_src: "{{ destinazione }}/{{ progetto_docker }}"
+    state: restarted
+    build: always
+  become: true

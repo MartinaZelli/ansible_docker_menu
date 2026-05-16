@@ -17,6 +17,7 @@
     version: "main"
     force: true
   become: true
+  notify: "Riavvia Docker"
 
 - name: progetto | Avvia i container Docker
   community.docker.docker_compose_v2:
