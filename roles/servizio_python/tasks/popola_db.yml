@@ -1,0 +1,12 @@
+- name: popola_db | Esecuzione script di popolamento n
+  community.docker.docker_container_exec:
+    container: "menu_app_container"
+    command: python3 /app/popola_db.py
+    chdir: /app
+  register: servizio_python_result_popola
+  become: true
+  changed_when: false
+
+- name: popola_db | Mostra esito popolamento
+  ansible.builtin.debug:
+    var: result_popola.stdout_lines

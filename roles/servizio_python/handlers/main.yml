@@ -7,3 +7,17 @@
   ansible.builtin.systemd:
     name: "{{ service_name }}"
     state: restarted
+
+- name: Restart Docker
+  ansible.builtin.systemd_service:
+    name: docker.service
+    state: restarted
+
+- name: Docker Compose Up - Monitoring
+  community.docker.docker_compose_v2:
+    project_src: /docker/monitoring
+    state: present
+    recreate: auto
+    remove_orphans: true
+  when: "'monitoring' in ansible_tags"
+  listen: "Docker Compose Up"
