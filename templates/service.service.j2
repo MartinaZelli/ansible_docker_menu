@@ -1,11 +1,14 @@
 [Unit]
-Description=Servizio {{ name_service }}
-After=network.target
+Description=Servizio Docker per Progetto Menu
+Requires=docker.service
+After=docker.service
 
 [Service]
-ExecStart=/usr/bin/python3 {{ destinazione }}/{{ name_service }}/{{ name_service }}.py
-Restart=always
-User={{ ansible_facts['user_id'] }}
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory={{ destinazione }}/{{ progetto_docker }}
+ExecStart=/usr/bin/docker-compose up -d --remove-orphans
+ExecStop=/usr/bin/docker-compose down
 
 [Install]
 WantedBy=multi-user.target
