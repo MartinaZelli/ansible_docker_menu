@@ -19,25 +19,17 @@
   become: true
   notify: "Riavvia Docker"
 
-- name: progetto | Avvia i container Docker
-  community.docker.docker_compose_v2:
-    project_src: "{{ destinazione }}/{{ progetto_docker }}"
-    state: present
-    build: always
-    remove_orphans: true
-  become: true
+# - name: progetto | Configura il servizio systemd
+#  ansible.builtin.template:
+#    src: service.service.j2
+#    dest: "/etc/systemd/system/{{ progetto_docker }}.service"
+#    mode: '0644'
+#  become: true
+#  notify: "Ricarica systemd"
 
-- name: progetto | Configura il servizio systemd
-  ansible.builtin.template:
-    src: service.service.j2
-    dest: "/etc/systemd/system/{{ progetto_docker }}.service"
-    mode: '0644'
-  become: true
-  notify: "Ricarica systemd"
-
-- name: progetto | Abilita e avvia il servizio del menu
-  ansible.builtin.systemd:
-    name: "{{ progetto_docker }}.service"
-    enabled: true
-    state: started
-  become: true
+# - name: progetto | Abilita e avvia il servizio del menu
+#  ansible.builtin.systemd:
+#    name: "{{ progetto_docker }}.service"
+#    enabled: true
+#    state: started
+#  become: true

@@ -10,3 +10,12 @@
   ansible.builtin.systemd:
     daemon_reload: true
   become: true
+
+- name: Riavvia Docker
+  community.docker.docker_compose_v2:
+    project_src: "{{ destinazione }}/{{ progetto_docker }}"
+    state: restarted
+    recreate: always
+    build: always
+    remove_orphans: true
+  become: true

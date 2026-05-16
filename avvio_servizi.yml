@@ -5,4 +5,3 @@
   become: true
   roles:
     - progetto_menu
-    - popola_db

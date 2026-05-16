@@ -1,6 +1,7 @@
 progetto_docker: "progetto_menu"
 nome_2: "python_service_2"
 destinazione: "/opt"
+package_update: false
 project_packages:
   - git
   - docker
