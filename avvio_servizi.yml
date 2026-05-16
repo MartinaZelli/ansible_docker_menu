@@ -3,15 +3,6 @@
   hosts: localhost
   connection: local
   become: true
-  tasks:
-    - name: "Sistema"
-      ansible.builtin.include_role:
-        name: sistema
-
-    - name: "Progetto"
-      ansible.builtin.include_role:
-        name: progetto
-
-    - name: "Popola DB"
-      ansible.builtin.include_role:
-        name: popola_db
+  roles:
+    - progetto_menu
+    - popola_db
